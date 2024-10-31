@@ -1,0 +1,137 @@
+syntax="proto3";
+
+import "google/protobuf/empty.proto";
+
+import "google/protobuf/any.proto";
+
+option java_multiple_files = true;
+option java_package = "com.grafysi.dynameta.server";
+option java_outer_classname = "RouteGuideProto";
+option objc_class_prefix = "RTG";
+
+package server;
+
+service ResourceIO {
+  rpc CreateResource(CreateResourceRequest) returns (CreateResourceResponse) {}
+  rpc ReadResource(ReadResourceRequest) returns (ResourceResponse) {}
+  rpc ReadResourceRange(ReadResourceRangeRequest) returns (stream ResourceResponse) {}
+  rpc ReadDependent(ReadDependentRequest) returns (stream DependentResponse);
+}
+
+message CreateResourceRequest {
+  string resource_name = 1;
+  int32 definition_id = 2;
+  google.protobuf.Any resource_value = 3;
+  repeated DependentRequest dependents = 4;
+}
+
+enum DependentType {
+  RESOURCE_DEPENDENT = 0;
+  FILE_DEPENDENT = 1;
+  TABLE_DEPENDENT = 2;
+  JSON_DEPENDENT = 3;
+}
+
+message DependentRequest {
+
+  DependentType dependent_type = 1;
+
+  google.protobuf.Any payload = 2;
+}
+
+message CreateResourceResponse {
+  repeated UpdateAction actions = 1;
+}
+
+message UpdateAction {
+
+  enum TargetStore {
+    RESOURCE_STORE = 0;
+    FILE_STORE = 1;
+    TABLE_STORE = 2;
+    JSON_STORE = 3;
+  }
+
+  enum Operation {
+    CREATE = 0;
+    UPDATE = 1;
+    DELETE = 2;
+  }
+
+  TargetStore target_store = 2;
+  Operation operation = 3;
+  bool isFailed = 4;
+  string failedMessage = 5;
+}
+
+message ReadResourceRequest {
+  string resource_name = 1;
+  int32 version_recent_lower = 2;
+  int32 version_recent_upper = 3;
+  int64 revision_min = 4;
+  int64 revision_max = 5;
+}
+
+message ReadResourceRangeRequest {
+
+  enum SortOrder {
+    NONE = 0;
+    ASCEND = 1;
+    DESCEND = 2;
+  }
+
+  enum SortTarget {
+    NAME = 0;
+    VERSION_RECENT = 1;
+    REVISION = 2;
+    VALUE = 3;
+  }
+
+  string range_start = 1;
+  string range_end = 2;
+  int64 limit = 3;
+  SortOrder sort_order = 4;
+  SortTarget sort_target = 5;
+  int32 version_recent_upper = 6;
+  int32 version_recent_lower = 7;
+  int64 revision_min = 8;
+  int64 revision_max = 9;
+  repeated int32 definition_ids = 12;
+  repeated string definition_names = 13;
+}
+
+message ResourceResponse {
+  string resource_name = 1;
+  int32 definition_id = 2;
+  int64 revision = 3;
+  int32 version_recent = 4;
+  google.protobuf.Any resource_value = 5;
+}
+
+message ReadDependentRequest {
+  string resource_name = 1;
+  int64 revision = 2;
+  DependentType dependent_type = 3;
+}
+
+message DependentResponse {
+  google.protobuf.Any payload = 2;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

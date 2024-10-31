@@ -1,0 +1,25 @@
+services:
+  mimiciv-demo:
+    image: postgres:17.0
+    container_name: dynameta-pg
+    environment:
+      - POSTGRES_PASSWORD=abcd1234
+      - PGDATA=/var/lib/postgresql/data/pgdata
+      - POSTGRES_DB=dynameta
+    command:
+      - "postgres"
+      - "-c"
+      - "wal_level=logical"
+      - "-c"
+      - "log_statement=all"
+    ports:
+      - "5433:5432"
+    restart: always
+    volumes:
+      - dynameta-pg-data:/var/lib/postgresql/data
+      - type: bind
+        source: ../sql
+        target: /docker-entrypoint-initdb.d
+
+volumes:
+  dynameta-pg-data:

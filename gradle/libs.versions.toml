@@ -1,0 +1,29 @@
+[plugins]
+lombok = { id = "io.freefair.lombok", version = "8.10.2" }
+protobuf = { id = "com.google.protobuf", version = "0.9.4" }
+
+[versions]
+grpc-java = "1.67.1"
+annotation-api = "6.0.53"
+protoc = "3.25.3"
+slf4j-api = "2.0.16"
+log4j-impl = "2.24.1"
+hikaricp = "6.0.0"
+spring = "6.1.14"
+postgres-jdbc = "42.7.4"
+jooq = "3.19.14"
+
+
+[libraries]
+grpc-netty-shaded = { module = "io.grpc:grpc-netty-shaded", version.ref = "grpc-java" }
+grpc-protobuf = { module = "io.grpc:grpc-protobuf", version.ref = "grpc-java" }
+grpc-stub = { module = "io.grpc:grpc-stub", version.ref = "grpc-java" }
+annotation-api = { module = "org.apache.tomcat:annotations-api", version.ref = "annotation-api"}
+slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j-api" }
+log4j-impl = { module = "org.apache.logging.log4j:log4j-slf4j2-impl", version.ref = "log4j-impl" }
+protoc-core = { module = "com.google.protobuf:protoc", version.ref = "protoc" }
+protoc-gen-grpc = { module = "io.grpc:protoc-gen-grpc-java", version.ref = "grpc-java" }
+hikaricp = { module = "com.zaxxer:HikariCP", version.ref = "hikaricp" }
+spring-context = {module = "org.springframework:spring-context", version.ref = "spring"}
+postgres-jdbc = {module = "org.postgresql:postgresql", version.ref = "postgres-jdbc"}
+jooq = {module = "org.jooq:jooq", version.ref = "jooq"}
