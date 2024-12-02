@@ -6,13 +6,13 @@ import "google/protobuf/any.proto";
 
 option java_multiple_files = true;
 option java_package = "com.grafysi.dynameta.server";
-option java_outer_classname = "ResourceIOProto";
+option java_outer_classname = "ResourceCommandProto";
 option objc_class_prefix = "RTG";
 
 package server;
 
-service ResourceIO {
-  rpc CreateResource(CreateResourceRequest) returns (CreateResourceResponse) {}
+service ResourceCommand {
+  rpc Create(CreateResourceRequest) returns (CreateResourceResponse) {}
   rpc ReadResource(ReadResourceRequest) returns (ResourceResponse) {}
   rpc ReadResourceRange(ReadResourceRangeRequest) returns (stream ResourceResponse) {}
   rpc ReadDependent(ReadDependentRequest) returns (stream DependentResponse);

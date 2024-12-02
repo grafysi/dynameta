@@ -1,0 +1,16 @@
+syntax="proto3";
+
+package dynameta.message;
+
+import "google/protobuf/any.proto";
+import "google/protobuf/struct.proto";
+
+option java_package = "com.grafysi.dynameta.baseplugin";
+option java_multiple_files = true;
+
+message ResourceDefinition {
+  int32 id = 1;
+  string name = 2;
+  string resource_type = 3;
+  google.protobuf.Struct definition = 4;
+}
