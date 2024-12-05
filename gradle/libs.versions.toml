@@ -12,6 +12,8 @@ hikaricp = "6.0.0"
 spring = "6.1.14"
 postgres-jdbc = "42.7.4"
 jooq = "3.19.14"
+byte-buddy = "1.15.10"
+classgraph = "4.8.179"
 
 
 [libraries]
@@ -25,5 +27,9 @@ protoc-core = { module = "com.google.protobuf:protoc", version.ref = "protoc" }
 protoc-gen-grpc = { module = "io.grpc:protoc-gen-grpc-java", version.ref = "grpc-java" }
 hikaricp = { module = "com.zaxxer:HikariCP", version.ref = "hikaricp" }
 spring-context = {module = "org.springframework:spring-context", version.ref = "spring"}
+spring-test = {module = "org.springframework:spring-test", version.ref = "spring"}
 postgres-jdbc = {module = "org.postgresql:postgresql", version.ref = "postgres-jdbc"}
 jooq = {module = "org.jooq:jooq", version.ref = "jooq"}
+bytebuddy = {module = "net.bytebuddy:byte-buddy", version.ref = "byte-buddy"}
+classgraph = {module = "io.github.classgraph:classgraph", version.ref = "classgraph"}
+

@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+import "google/protobuf/descriptor.proto";
+option java_package = "com.grafysi.dynameta.plugin";
+
+package dynameta.plugin.api;
+
+// Define a custom option named 'is_priority'
+// This option can be applied to fields
+extend google.protobuf.MessageOptions {
+  PluginSelector plugin_selector = 50001;
+}
+
+message PluginSelector {
+
+  string with_plugin_name = 1;
+
+  /*oneof resource_type_selection {
+    string with_resource_type = 2;
+    string with_resource_type_field = 3;
+  }*/
+  string with_resource_type_field = 3;
+
+  /*oneof with_resource_def {
+    string by_rd_name = 4;
+    string by_rd_name_field = 5;
+    string by_rd_id = 6;
+    string by_rd_id_field = 7;
+  }*/
+  oneof resource_def_selection {
+    //string with_resdef_name = 4;
+    string with_resdef_name_field = 5;
+    //string with_resdef_id = 6;
+    string with_resdef_id_field = 7;
+  }
+
+  /*oneof with_resource {
+    string by_res_name = 8;
+    string by_res_name_field = 9;
+    string by_res_id = 10;
+    string by_res_id_field = 11;
+  }*/
+
+  oneof resource_selection {
+    //string with_res_name = 8;
+    string with_res_name_field = 9;
+    //string with_res_id = 10;
+    string with_res_id_field = 11;
+  }
+}
+

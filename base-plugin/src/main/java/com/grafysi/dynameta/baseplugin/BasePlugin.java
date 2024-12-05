@@ -1,15 +1,19 @@
 package com.grafysi.dynameta.baseplugin;
 
-import com.grafysi.dynameta.api.annotation.PluginConfiguration;
-import com.grafysi.dynameta.api.spi.DynaPlugin;
+import com.grafysi.dynameta.plugin.annotation.DynaPlugin;
 
-@PluginConfiguration(
+@DynaPlugin(
         name = "base-plugin",
-        extendedPlugin = "",
+        parentPlugin = "",
         isTypeManager = false,
-        grpcServicePackages = {"com.grafysi.dynameta.baseplugin"},
-        functionHandlerPackages = {"com.grafysi.dynameta.baseplugin"}
+        grpcServicePackages = {"com.grafysi.dynameta.baseplugin.functions"},
+        dynaFunctionPackages = {"com.grafysi.dynameta.baseplugin.services"}
 )
-public interface BasePlugin extends DynaPlugin {
+public interface BasePlugin {
 
+    String CREATE_RESOURCE_DEFINITION = "CREATE_RESOURCE_DEFINITION";
+
+    String GET_RESOURCE_DEFINITION = "GET_RESOURCE_DEFINITION";
+
+    String LIST_RESOURCE_DEFINITION = "LIST_RESOURCE_DEFINITION";
 }

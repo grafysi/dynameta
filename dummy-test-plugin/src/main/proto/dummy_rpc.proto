@@ -1,0 +1,41 @@
+syntax="proto3";
+
+import "google/protobuf/struct.proto";
+import "plugin_dynamics.proto";
+
+
+option java_multiple_files = true;
+option java_package = "com.grafysi.dynameta.dummyplugin";
+option java_outer_classname = "DummyServiceProto";
+option objc_class_prefix = "RTG";
+
+package dynameta.dummyplugin;
+
+service DummyService {
+  rpc Create(CreateRequest) returns (DummyObject) {}
+  rpc Get(GetRequest) returns (DummyObject) {}
+}
+
+message CreateRequest {
+  option (dynameta.plugin.api.plugin_selector) = {
+    with_plugin_name: "dummy-plugin",
+  };
+
+  string fooValue = 1;
+  string barValue = 2;
+}
+
+message GetRequest {
+
+  option (dynameta.plugin.api.plugin_selector) = {
+    with_plugin_name: "dynameta-dummy-plugin",
+  };
+
+  int32 id = 1;
+}
+
+message DummyObject {
+  int32 id = 1;
+  string fooValue = 2;
+  string barValue = 3;
+}

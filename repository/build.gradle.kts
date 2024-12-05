@@ -13,7 +13,7 @@ dependencies {
 
     implementation(libs.jooq)
     implementation(project(":controller-api"))
-    implementation(project(":core"))
+    implementation(project(":core-deprecated"))
     implementation(libs.slf4j.api)
     implementation(libs.log4j.impl)
 

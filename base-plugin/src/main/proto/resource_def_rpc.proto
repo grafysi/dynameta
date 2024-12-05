@@ -1,0 +1,44 @@
+syntax="proto3";
+
+import "google/protobuf/struct.proto";
+import "resource_def.proto";
+import "plugin_dynamics.proto";
+
+option java_multiple_files = true;
+option java_package = "com.grafysi.dynameta.baseplugin";
+option java_outer_classname = "ResourceDefinitionProto";
+option objc_class_prefix = "RTG";
+
+package dynameta.rpc;
+
+service ResourceDefinition {
+  rpc Create(CreateRequest) returns (CreateResponse) {}
+  rpc Get(GetRequest) returns (dynameta.message.ResourceDefinition) {}
+  rpc List(ListRequest) returns (stream dynameta.message.ResourceDefinition) {}
+}
+
+message CreateRequest {
+
+  option(dynameta.plugin.api.plugin_selector) = {
+    with_resource_type_field: "resource_type",
+  };
+
+  string name = 1;
+  string resource_type = 2;
+  google.protobuf.Struct definition = 3;
+}
+
+message CreateResponse {
+  int32 id = 1;
+}
+
+message GetRequest {
+  oneof search_criteria {
+    int32 id = 1;
+    string name = 2;
+  }
+}
+
+message ListRequest {
+  string resource_type = 1;
+}

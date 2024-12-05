@@ -16,6 +16,7 @@ dependencies {
     compileOnly(libs.grpc.protobuf)
     compileOnly(libs.grpc.stub)
     compileOnly(project(":plugin-api"))
+    compileOnly(project(":core"))
     compileOnly(libs.slf4j.api)
     compileOnly(libs.annotation.api)
 

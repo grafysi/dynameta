@@ -1,7 +1,6 @@
 plugins {
     id("java")
     alias(libs.plugins.protobuf)
-
 }
 
 group = "com.grafysi.dynameta"
@@ -12,17 +11,14 @@ repositories {
 }
 
 dependencies {
-    compileOnly(libs.grpc.netty.shaded)
-    compileOnly(libs.grpc.protobuf)
-    compileOnly(libs.grpc.stub)
-    compileOnly(project(":plugin-api"))
-    compileOnly(libs.slf4j.api)
+
+    implementation(libs.grpc.netty.shaded)
+    implementation(libs.grpc.protobuf)
+    implementation(libs.grpc.stub)
     compileOnly(libs.annotation.api)
 
-    testImplementation(libs.log4j.impl)
-    testImplementation(libs.grpc.stub)
-    testImplementation(libs.grpc.protobuf)
-    testImplementation(libs.grpc.netty.shaded)
+    compileOnly(libs.grpc.netty.shaded)
+    compileOnly(libs.grpc.stub)
 
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
